@@ -1,0 +1,28 @@
+<div class="container col-md-6 mt-2">
+    <div class="card">
+        <div class="card-header">Nouveau client</div>
+        <div class="card-body">
+            <form [formGroup]="newCutomerFormGroup" (ngSubmit)="handleSaveCutomer()">
+                <div class="md-3">
+                    <label>Name</label>
+                    <input type="text" class="form-control" formControlName="name">
+                    <span class="text-danger" *ngIf="newCutomerFormGroup.controls['name'].touched
+                                                && newCutomerFormGroup.controls['name'].errors
+                                                && newCutomerFormGroup.controls['name'].errors!['required'] ">
+                                            Le nom est obligatoire
+                                            </span>
+                </div>
+                <div class="md-3">
+                    <label>Email</label>
+                    <input type="text" class="form-control" formControlName="email">
+                    <span class="text-danger" *ngIf="newCutomerFormGroup.controls['email'].touched
+                    && newCutomerFormGroup.controls['email'].errors
+                    && newCutomerFormGroup.controls['email'].errors!['email'] ">
+                Veuillez saisir un email SVP
+                </span>
+                </div>
+                <button [disabled]="!newCutomerFormGroup.valid" class="btn btn-success mt-2">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+</div>
