@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  backenhost: "http://localhost:8080/customer"
+  backenhost: "http://localhost:8080/customer",
+  backAccount: "http://localhost:8080/account",
 }
 /*
  * For easier debugging in development mode, you can import the following file

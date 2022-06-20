@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router} from '@angular/router';
 import { Customer } from '../models/customer.model';
 import { CustomerService } from '../services/customer.service';
 
@@ -11,7 +12,7 @@ import { CustomerService } from '../services/customer.service';
 export class NewCustomerComponent implements OnInit {
   newCutomerFormGroup!: FormGroup;
 
-  constructor(private formG:FormBuilder,private serviceCustomer: CustomerService) { }
+  constructor(private formG:FormBuilder,private serviceCustomer: CustomerService,private router: Router) { }
 
   ngOnInit(): void {
     this.newCutomerFormGroup = this.formG.group({
@@ -27,6 +28,9 @@ export class NewCustomerComponent implements OnInit {
        next (data:any) {
 
         alert("client enregistré avec succès");
+       // this.router.navigateUrl("/customer");
+       //this.newCutomerFormGroup.reset();
+
       },
      error:error => {
         console.log("erreur de l'enregistrement");
