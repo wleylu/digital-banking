@@ -14,14 +14,36 @@
                       </button>
                         </div>
                     </form>
-                    <ng-container *ngIf="accountObservable |async as accountDetails">
-                        <div>
+                    <ng-container *ngIf="accountObservable | async as accountHistoryDTO">
+                        <div class="mb-2">
                             <label>Account ID: </label>
-                            <label><strong>{{ accountDetails.accountId}}</strong></label>
+                            <label><strong>{{ accountHistoryDTO.accountId}}</strong></label>
                         </div>
-                        <div>
+                        <div class="mb-2">
                             <label>Balance : </label>
-                            <label><strong>{{ accountDetails.balance }}</strong></label>
+                            <label><strong>{{ accountHistoryDTO.balance | number:'1.2-2' }}</strong></label>
+                        </div>
+
+
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <th>ID</th>
+                                    <th>Type</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Desc</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let opers of accountHistoryDTO.operationDTOs">
+                                        <td>{{ opers.id}}</td>
+                                        <td>{{ opers.type}}</td>
+                                        <td>{{ opers.operationDate |date: 'dd-MM-y HH:mm:ss' }}</td>
+                                        <td>{{ opers.amount}}</td>
+                                        <td>{{ opers.description}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </ng-container>
 

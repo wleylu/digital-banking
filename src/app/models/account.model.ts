@@ -1,16 +1,17 @@
-export interface AccounDetails {
+
+export interface AccountHistoryDTO {
   accountId:     string;
   balance:       number;
   currentPage:   number;
   totalPages:    number;
   size:          number;
-  operationDTOs: AccountOperations[];
+  operationDTOs: OperationDTO[];
 }
 
-export interface AccountOperations {
+export interface OperationDTO {
   id:            number;
   operationDate: Date;
   amount:        number;
   type:          string;
-  description:   null;
+  description:   string;
 }

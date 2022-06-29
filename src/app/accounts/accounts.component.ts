@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { AccounDetails } from '../models/account.model';
+import { AccountHistoryDTO, OperationDTO } from '../models/account.model';
 import { AccountService } from '../services/account.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AccountService } from '../services/account.service';
 })
 export class AccountsComponent implements OnInit {
   accountFormGroup! : FormGroup;
-  accountObservable! : Observable<AccounDetails>;
+  accountObservable! : Observable<AccountHistoryDTO>;
   curentPage: number=0;
   pageSize : number=5;
 
@@ -27,7 +27,6 @@ export class AccountsComponent implements OnInit {
     let account = this.accountFormGroup.value.accountId;
 
     this.accountObservable=this.servieAccount.getHistoryOpers(account,this.curentPage,this.pageSize);
-    console.log( this.accountObservable);
 
   }
 
