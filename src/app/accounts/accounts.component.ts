@@ -14,6 +14,7 @@ export class AccountsComponent implements OnInit {
   accountObservable! : Observable<AccountHistoryDTO>;
   curentPage: number=0;
   pageSize : number=5;
+  operationsFormGroup!: FormGroup;
 
   constructor(private fb: FormBuilder,private servieAccount: AccountService) { }
 
@@ -21,12 +22,28 @@ export class AccountsComponent implements OnInit {
     this.accountFormGroup = this.fb.group({
       accountId : this.fb.control(null),
     });
+
+    this.operationsFormGroup = this.fb.group({
+      opearationType: this.fb.control(null),
+      montant: this.fb.control(0),
+      accountDestinateur: this.fb.control(null),
+      description: this.fb.control(null),
+    });
   }
 
   handleSeachAccount(){
     let account = this.accountFormGroup.value.accountId;
 
     this.accountObservable=this.servieAccount.getHistoryOpers(account,this.curentPage,this.pageSize);
+
+  }
+
+  handleGoTo(page: number){
+    this.curentPage=page;
+    this.handleSeachAccount();
+  }
+
+  handleOperation(){
 
   }
 
